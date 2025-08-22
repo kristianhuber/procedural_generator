@@ -37,8 +37,8 @@ class NoiseGenerator:
         )
 
 
-STANDARD_NOISE = NoiseGenerator()
-
+HEIGHT_NOISE = NoiseGenerator()
+BIOME_NOISE = NoiseGenerator(scale=100, octaves=3, persistence=0.2)
 
 def normalize(v, min=0, max=255) -> int:
     """

@@ -18,8 +18,10 @@ def render_chunk(screen: Surface, offset_x: int, offset_y: int, chunk: Chunk):
     for x in range(SIZE):
         for y in range(SIZE):
             h = chunk.get_height_at(x, y)
+            b = chunk.get_biome_at(x, y)
             
             pixel_color = _colorize(h)
+            pixel_color = b.biome_color
 
             screen.set_at((offset_x + chunk.worldX + x, offset_y + chunk.worldY + y), pixel_color)
 
