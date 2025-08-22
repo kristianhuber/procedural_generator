@@ -13,15 +13,20 @@ pygame.display.set_caption("Procedural Terrain Generator")
 # Generate the world
 my_world = World()
 
-# Render the world
-render_world(screen, my_world)
-
 # Game loop
 running = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
+        if event.type == pygame.KEYUP:
+            if event.key == pygame.K_SPACE:
+                print("Loading new world...")
+                my_world = World()
+                
+    screen.fill((0, 0, 0))
+    render_world(screen, my_world)
+    pygame.display.flip()
 
 # Quit Pygame
 pygame.quit()

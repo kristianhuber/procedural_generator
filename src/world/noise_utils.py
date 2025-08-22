@@ -3,7 +3,7 @@ import noise
 
 class NoiseGenerator:
 
-    def __init__(self, scale=100.0, octaves=6, persistence=0.5, lacunarity=2.0):
+    def __init__(self, scale=300.0, octaves=6, persistence=0.5, lacunarity=2.0):
         """
         Holds parameters for generating perlin noise.
 
@@ -27,7 +27,7 @@ class NoiseGenerator:
             worldY - y coordinate in the world.
             seed - the world's seed.
         """
-        return noise.pnoise2(
+        return noise.snoise2(
             worldX / self.scale,
             worldY / self.scale,
             octaves=self.octaves,
