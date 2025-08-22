@@ -1,5 +1,7 @@
 import pygame
-from height_map import HeightMap
+
+from graphics.renderer import render_world
+from world.world import World
 
 # Initialize Pygame
 pygame.init()
@@ -8,23 +10,11 @@ pygame.init()
 screen = pygame.display.set_mode((512, 512))
 pygame.display.set_caption("Procedural Terrain Generator")
 
-heightMap = HeightMap()
-heightMap.generate_map()
+# Generate the world
+my_world = World()
 
-# --- Draw the map ---
-for j in range(len(heightMap.world)):
-    for i in range(len(heightMap.world[j])):
-        # Use the correct syntax to access the map data
-        height_val = heightMap.world[j][i]
-        
-        # Create a grayscale color tuple
-        c = (height_val, height_val, height_val)
-
-        # Draw the pixel at the original coordinates (no scaling needed)
-        screen.set_at((i, j), c)
-
-# Update the display
-pygame.display.flip()
+# Render the world
+render_world(screen, my_world)
 
 # Game loop
 running = True
