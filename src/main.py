@@ -13,6 +13,9 @@ pygame.display.set_caption("Procedural Terrain Generator")
 # Generate the world
 my_world = World()
 
+dragging = False
+posX, posY = 0, 0
+
 # Game loop
 running = True
 while running:
@@ -23,9 +26,20 @@ while running:
             if event.key == pygame.K_SPACE:
                 print("Loading new world...")
                 my_world = World()
-                
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            if event.button == 1:
+                dragging = True
+        if event.type == pygame.MOUSEBUTTONUP:
+            if event.button == 1:
+                dragging = False
+        if event.type == pygame.MOUSEMOTION:
+            if dragging:
+                dx, dy = event.rel
+                posX += dx
+                posY += dy
+
     screen.fill((0, 0, 0))
-    render_world(screen, my_world)
+    render_world(screen, posX, posY, my_world)
     pygame.display.flip()
 
 # Quit Pygame

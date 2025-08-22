@@ -14,15 +14,15 @@ def _colorize(height):
 
     return (0, height - 50, 0)
 
-def render_chunk(screen: Surface, chunk: Chunk):
+def render_chunk(screen: Surface, offset_x: int, offset_y: int, chunk: Chunk):
     for x in range(SIZE):
         for y in range(SIZE):
             h = chunk.get_height_at(x, y)
             
             pixel_color = _colorize(h)
 
-            screen.set_at((chunk.worldX + x, chunk.worldY + y), pixel_color)
+            screen.set_at((offset_x + chunk.worldX + x, offset_y + chunk.worldY + y), pixel_color)
 
-def render_world(screen: Surface, world: World):
+def render_world(screen: Surface, offset_x: int, offset_y: int, world: World):
     for chunk in world.chunks:
-        render_chunk(screen, chunk)
+        render_chunk(screen, offset_x, offset_y, chunk)
